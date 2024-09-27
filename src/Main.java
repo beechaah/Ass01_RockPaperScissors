@@ -1,110 +1,79 @@
-import javax.swing.*;
 import java.util.Scanner;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String choice = "";
-        boolean doneInputA = false;
-        boolean doneInputB = false;
+        String playerAChoice = "";
+        String playerBChoice = "";
+        String playAgain = "";
         boolean doneInput = false;
-        boolean matchPlays = true;
 
-        do
-        {
-            do
-            {
-                System.out.println("Enter your Rock, Paper, Scissors move [R,P,S, or, r,p,s]: ");
-                choice = in.nextLine();
-
-                if(choice.equalsIgnoreCase("R"))
-                {
-                    System.out.println("You chose Rock!");
+        do {
+            // Player A's turn
+            do {
+                System.out.println("Player A, enter your Rock, Paper, Scissors move [R, P, S]: ");
+                playerAChoice = in.nextLine();
+                if (playerAChoice.equalsIgnoreCase("R")) {
+                    System.out.println("Player A chose Rock!");
+                    break;
+                } else if (playerAChoice.equalsIgnoreCase("P")) {
+                    System.out.println("Player A chose Paper!");
+                    break;
+                } else if (playerAChoice.equalsIgnoreCase("S")) {
+                    System.out.println("Player A chose Scissors!");
+                    break;
+                } else {
+                    System.out.println("Invalid choice! Please enter R, P, or S.");
                 }
-                else if (choice.equalsIgnoreCase("P"))
-                {
-                    System.out.println("You chose Paper!");
+            } while (true);
+
+            // Player B's turn
+            do {
+                System.out.println("Player B, enter your Rock, Paper, Scissors move [R, P, S]: ");
+                playerBChoice = in.nextLine();
+                if (playerBChoice.equalsIgnoreCase("R")) {
+                    System.out.println("Player B chose Rock!");
+                    break;
+                } else if (playerBChoice.equalsIgnoreCase("P")) {
+                    System.out.println("Player B chose Paper!");
+                    break;
+                } else if (playerBChoice.equalsIgnoreCase("S")) {
+                    System.out.println("Player B chose Scissors!");
+                    break;
+                } else {
+                    System.out.println("Invalid choice! Please enter R, P, or S.");
                 }
-                else if (choice.equalsIgnoreCase("S"))
-                {
-                    System.out.println("You chose Scissors!");
-                }
-                else
-                {
-                    System.out.println("You entered " + choice + " which is not an acceptable move!");
-                    System.out.println("Run the program again with correct input");
-                }
+            } while (true);
 
-            }while(doneInputA == false);
+            // Determine the result
+            if (playerAChoice.equalsIgnoreCase(playerBChoice)) {
+                System.out.println("It's a tie!");
+            } else if (playerAChoice.equalsIgnoreCase("R") && playerBChoice.equalsIgnoreCase("S")) {
+                System.out.println("Rock crushes Scissors, Player A wins!");
+            } else if (playerAChoice.equalsIgnoreCase("R") && playerBChoice.equalsIgnoreCase("P")) {
+                System.out.println("Paper covers Rock, Player B wins!");
+            } else if (playerAChoice.equalsIgnoreCase("P") && playerBChoice.equalsIgnoreCase("R")) {
+                System.out.println("Paper covers Rock, Player A wins!");
+            } else if (playerAChoice.equalsIgnoreCase("P") && playerBChoice.equalsIgnoreCase("S")) {
+                System.out.println("Scissors cuts Paper, Player B wins!");
+            } else if (playerAChoice.equalsIgnoreCase("S") && playerBChoice.equalsIgnoreCase("P")) {
+                System.out.println("Scissors cuts Paper, Player A wins!");
+            } else if (playerAChoice.equalsIgnoreCase("S") && playerBChoice.equalsIgnoreCase("R")) {
+                System.out.println("Rock crushes Scissors, Player B wins!");
+            }
 
-            do
-            {
-                System.out.println("Enter your Rock, Paper, Scissors move [R,P,S, or, r,p,s]: ");
-                choice = in.nextLine();
+            // Ask to play again
+            System.out.println("Do you want to play again? [Y/N]");
+            playAgain = in.nextLine();
+            if (playAgain.equalsIgnoreCase("N")) {
+                doneInput = true;
+            } else if (!playAgain.equalsIgnoreCase("Y")) {
+                System.out.println("Invalid input, exiting the game.");
+                doneInput = true;
+            }
+        } while (!doneInput);
 
-                if(choice.equalsIgnoreCase("R"))
-                {
-                    System.out.println("You chose Rock!");
-                }
-                else if (choice.equalsIgnoreCase("P"))
-                {
-                    System.out.println("You chose Paper!");
-                }
-                else if (choice.equalsIgnoreCase("S"))
-                {
-                    System.out.println("You chose Scissors!");
-                }
-                else
-                {
-                    System.out.println("You entered " + choice + " which is not an acceptable move!");
-                    System.out.println("Run the program again with correct input");
-                }
-
-            }while(doneInputB == false);
-
-        matchPlays = doneInputA & doneInputB;
-        if(doneInputA == 'R', doneInputB == 'R')
-        {
-            System.out.println("Rock vs. Rock, it's a tie!");
-        }
-        else if(doneInputA == 'R', doneInputB = 'P')
-        {
-            System.out.println("Paper covers Rock, Player B wins!");
-        }
-        else if(doneInputA == 'R', doneInputB = 'S')
-        {
-            System.out.println("Rock crushes Scissors, Player A wins!");
-        }
-        else if(doneInputA == 'P', doneInputB = 'R')
-        {
-            System.out.println("Paper covers Rock, Player A wins!");
-        }
-        else if(doneInputA == 'P', doneInputB = 'P')
-        {
-            System.out.println("Paper vs. Paper, it's a tie!");
-        }
-        else if(doneInputA == 'P', doneInputB = 'S')
-        {
-            System.out.println("Scissors cuts Paper, Player B wins!");
-        }
-        else if(doneInputA == 'S', doneInputB = 'R')
-        {
-            System.out.println("Rock crushes Scissors, Player B wins!");
-        }
-        else if(doneInputA == 'S', doneInputB = 'P')
-        {
-            System.out.println("Scissors cuts Paper, Player A wins!");
-        }
-        else if(doneInputA == 'S', doneInputB = 'S')
-        {
-                System.out.println("Scissors vs. Scissors, it's a tie!");
-        }
-
-            System.out.println("Continue Playing [Y/N]?");
-        }while(!doneInput == false);
-
-
+        System.out.println("Thanks for playing!");
+        in.close();
     }
 }
